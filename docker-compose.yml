@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: calibriai
+      POSTGRES_USER: calibriai
+      POSTGRES_PASSWORD: calibriai
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U calibriai -d calibriai"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  migrate:
+    build:
+      context: .
+      target: migrator
+    environment:
+      DATABASE_URL: postgresql://calibriai:calibriai@postgres:5432/calibriai
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://calibriai:calibriai@postgres:5432/calibriai
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-5.5}
+      APP_ENCRYPTION_KEY: ${APP_ENCRYPTION_KEY}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+volumes:
+  postgres_data:

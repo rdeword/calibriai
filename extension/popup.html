@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>CalibriAI</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <h1>CalibriAI</h1>
+      <p class="muted">Отправьте открытую вакансию HH в локальное приложение.</p>
+
+      <label>
+        Адрес приложения
+        <input id="appUrl" type="url" value="http://localhost:3000" />
+      </label>
+
+      <div id="preview" class="preview muted">Откройте страницу вакансии на hh.ru и нажмите кнопку.</div>
+      <div id="status" class="status" hidden></div>
+
+      <button id="send" type="button">Отправить в CalibriAI</button>
+      <a id="openApp" href="http://localhost:3000" target="_blank" rel="noreferrer">Открыть приложение</a>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

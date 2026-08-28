@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "CalibriAI Importer",
+  "version": "0.1.1",
+  "description": "Отправляет открытую вакансию HH.ru в локальное приложение CalibriAI.",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": [
+    "http://localhost:3000/*",
+    "https://hh.ru/*",
+    "https://*.hh.ru/*"
+  ],
+  "action": {
+    "default_title": "CalibriAI",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://hh.ru/*", "https://*.hh.ru/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
