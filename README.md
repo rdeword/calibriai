@@ -11,7 +11,7 @@ Next.js, TypeScript, Tailwind CSS, PostgreSQL, Drizzle ORM, OpenAI API и Docker
 1. Установите Git, Node.js 22+ и Docker Desktop.
 2. Клонируйте репозиторий и перейдите в его папку:
    ```bash
-   git clone <URL-РЕПОЗИТОРИЯ>
+   git clone https://github.com/rdeword/calibriai.git
    cd calibriai
    ```
 3. Скопируйте `.env.example` в `.env`.
